@@ -1,0 +1,18 @@
+{
+  "name" : "ZoaChou/xhprof-collector",
+  "description" : "Single XHProf collector use XHProf API",
+  "authors" : [
+    {
+      "name" : "ZoaChou",
+      "email" : "zoachou@mudoom.com"
+    }
+  ],
+  "require" : {
+    "php" : ">=5.6"
+  },
+  "autoload" : {
+    "files" : [
+      "src/collector.php"
+    ]
+  }
+}
