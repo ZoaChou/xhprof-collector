@@ -1,10 +1,16 @@
 {
-  "name" : "ZoaChou/xhprof-collector",
+  "name" : "zoa-chou/xhprof-collector",
+  "type": "library",
   "description" : "Single XHProf collector use XHProf API",
+  "keywords": ["xhprof","collector"],
+  "homepage": "https://github.com/ZoaChou/xhprof-collector",
+  "license": "GPL-3.0",
   "authors" : [
     {
       "name" : "ZoaChou",
-      "email" : "zoachou@mudoom.com"
+      "email" : "zoachou@mudoom.com",
+      "homepage": "https://www.mudoom.com",
+      "role": "Developer"
     }
   ],
   "require" : {
