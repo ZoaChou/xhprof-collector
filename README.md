@@ -34,14 +34,8 @@ Notice that this is a collector only, so you have to get a gui to show collected
 ```
 {
   "require" : {
-    "ZoaChou/xhprof-collector": "*",
-  },
-  "repositories": [ 
-    {
-      "type" : "git",
-      "url" : "https://github.com/ZoaChou/xhprof-collector.git"
-    }
-  ]
+    "zoa-chou/xhprof-collector": "*",
+  }
 }
 
 
