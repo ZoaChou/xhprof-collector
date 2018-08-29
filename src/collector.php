@@ -99,9 +99,13 @@ if (!defined('_XHGUI_INIT')) {
                     $requestTsMicro = new \MongoDate($requestTimeFloat[0], $requestTimeFloat[1]);
                 }
 
+                $server = $_SERVER;
+                // Remove XHGUI_MONGO_URI for security reasons
+                unset($server['XHGUI_MONGO_URI']);
+
                 $data['meta'] = array(
                     'url' => $uri,
-                    'SERVER' => $_SERVER,
+                    'SERVER' => $server,
                     'get' => $_GET,
                     'env' => $_ENV,
                     'simple_url' => preg_replace('/\=\d+/', '', $uri),
