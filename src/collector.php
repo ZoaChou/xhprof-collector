@@ -127,7 +127,7 @@ if (!defined('_XHGUI_INIT')) {
                     $queryInfo['connectTimeoutMS'] = 1000;
                 }
                 $dbName = substr($uriInfo['path'],1);
-                if ($uriInfo['user']) {
+                if (isset($uriInfo['user']) && $uriInfo['user']) {
                     $mongoUri = sprintf(
                         '%s://%s:%s@%s:%s/%s?%s',
                         $uriInfo['scheme'],
