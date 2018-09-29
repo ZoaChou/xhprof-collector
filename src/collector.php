@@ -17,6 +17,12 @@ if (!defined('_XHGUI_INIT')) {
 
     $_xhguiEnableProb = intval(_xhguiGetEnv('XHGUI_ENABLE_PROB',0));
 
+    // Check if enable single control on http request
+    $_xhguiSingleEnableProb = _xhguiGetEnv('HTTP_XHGUI_ENABLE_PROB',null);
+    if (_xhguiGetEnv('XHGUI_SINGLE_CONTROL',0) && !is_null($_xhguiSingleEnableProb)) {
+        $_xhguiEnableProb = intval($_xhguiSingleEnableProb);
+    }
+
     // Check if close cli collector
     if (!_xhguiGetEnv('XHGUI_ENABLE_CLI',0) && php_sapi_name() == "cli") {
         $_xhguiEnableProb = 0;

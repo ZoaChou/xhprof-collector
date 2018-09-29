@@ -81,3 +81,4 @@ auto_prepend_file=/path/to/your/collector.php
 * XHGUI_ENABLE_PROB —— The probability of start collector while request.Valid value is between 0(off) to 100(all on), default is 0.
 * XHGUI_MONGO_URI —— mongodb uri, such as：```mongodb://username:password@ip:host,ip2:host2/dbname?connectTimeoutMS=200```
 * XHGUI_ENABLE_CLI —— Enable collector while php running as cli model.Valid values is 0(off) and 1(on), default is 0.
+* XHGUI_SINGLE_CONTROL —— Enable use http header XHGUI-ENABLE-PROB (just like XHGUI_ENABLE_PROB, such as: 'XHGUI-ENABLE-PROB: 100') to control the probability of start collector which will cover XHGUI_ENABLE_PROB. Valid values is 0(off) and 1(on), default is 0.
