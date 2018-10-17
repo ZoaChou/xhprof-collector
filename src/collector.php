@@ -15,12 +15,12 @@ if (!defined('_XHGUI_INIT')) {
         return isset($_SERVER[$key]) ? $_SERVER[$key] : $default;
     }
 
-    $_xhguiEnableProb = intval(_xhguiGetEnv('XHGUI_ENABLE_PROB',0));
+    $_xhguiEnableProb = floatval(_xhguiGetEnv('XHGUI_ENABLE_PROB',0));
 
     // Check if enable single control on http request
     $_xhguiSingleEnableProb = _xhguiGetEnv('HTTP_XHGUI_ENABLE_PROB',null);
     if (_xhguiGetEnv('XHGUI_SINGLE_CONTROL',0) && !is_null($_xhguiSingleEnableProb)) {
-        $_xhguiEnableProb = intval($_xhguiSingleEnableProb);
+        $_xhguiEnableProb = floatval($_xhguiSingleEnableProb);
     }
 
     // Check if close cli collector
@@ -28,7 +28,16 @@ if (!defined('_XHGUI_INIT')) {
         $_xhguiEnableProb = 0;
     }
 
-    if ($_xhguiEnableProb && $_xhguiEnableProb >= mt_rand(0,100)) {
+    // Support the probability of collector between 0 and 1
+    $max = 100;
+    if ($_xhguiEnableProb < 1 && $_xhguiEnableProb > 0) {
+        $max = intval($max/$_xhguiEnableProb);
+        $_xhguiEnableProb = 1;
+    } else {
+        $_xhguiEnableProb = intval($_xhguiEnableProb);
+    }
+
+    if ($_xhguiEnableProb && $_xhguiEnableProb >= mt_rand(0,$max)) {
         if (extension_loaded('uprofiler')) {
             uprofiler_enable(UPROFILER_FLAGS_CPU | UPROFILER_FLAGS_MEMORY, array());
         } else if (extension_loaded('tideways')) {
