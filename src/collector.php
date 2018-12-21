@@ -81,7 +81,9 @@ if (!defined('_XHGUI_INIT')) {
 
                 // Try to send any data remaining in the output buffers
                 // and close user request to avoid making the user wait
-                fastcgi_finish_request();
+                if (function_exists('fastcgi_finish_request')) {
+                    fastcgi_finish_request();
+                }
 
                 $uri = array_key_exists('REQUEST_URI', $_SERVER)
                     ? $_SERVER['REQUEST_URI']
@@ -117,6 +119,13 @@ if (!defined('_XHGUI_INIT')) {
                 $server = $_SERVER;
                 // Remove XHGUI_MONGO_URI for security reasons
                 unset($server['XHGUI_MONGO_URI']);
+                // Make sure for easy search even if php run under not fcgi model, such as cli
+                if (!isset($server['SERVER_NAME'])) {
+                    $server['SERVER_NAME'] = $server['HOSTNAME'];
+                }
+                if (!isset($server['REQUEST_METHOD'])) {
+                    $server['REQUEST_METHOD'] = strtoupper(php_sapi_name());
+                }
 
                 $data['meta'] = array(
                     'url' => $uri,
